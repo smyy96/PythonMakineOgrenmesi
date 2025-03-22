@@ -46,3 +46,72 @@ plt.plot(x1,y1,x1,y2)
 ```
 <img src="https://github.com/user-attachments/assets/fb3e27a0-5ce2-40a6-956c-e63afd641243" width="400">
 
+### 📌 Sütun Grafiği (Line Plot)  
+
+#### **Örnek - 1: Musterilerin sigortaya odeme miktarlarinin sigara icme durumlarina gore ortalamasini bulma**  
+
+```python
+ozet=veriSeti.groupby("sigaraDurum")["odemeMiktari"].mean()
+
+plt.bar(x=ozet.index, height=ozet.values, color="purple")
+plt.xlabel("Sigara İçme Durumu")  
+plt.ylabel("Ödeme Miktarı") 
+
+```
+<img src="https://github.com/user-attachments/assets/1c97930b-d958-4b3c-8fcf-7b7abd17412f" width="400">
+
+
+### 📌 Pasta Grafiği (Line Plot)  
+
+#### **Örnek - 1: Sigortaya yapılan toplam ödeme miktarının bölgeler arasında yüzdesel dağılımı**  
+
+```python
+ozet = veriSeti.groupby("bolge")["odemeMiktari"].sum()
+
+etiketler=ozet.index
+degerler=ozet.values
+renkler=sns.color_palette("viridis",4)
+secim=(0.2,0,0,0)
+
+plt.pie(degerler,explode=secim,labels=etiketler, autopct="%%%4.1f", shadow=True, startangle=360, colors=renkler)
+
+```
+<img src="https://github.com/user-attachments/assets/8c511612-5c75-444a-97ba-ac57aec9f6aa" width="400">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
