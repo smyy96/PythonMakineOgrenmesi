@@ -78,11 +78,20 @@ plt.pie(degerler,explode=secim,labels=etiketler, autopct="%%%4.1f", shadow=True,
 ```
 <img src="https://github.com/user-attachments/assets/8c511612-5c75-444a-97ba-ac57aec9f6aa" width="400">
 
+### 📌 Serpilme Grafiği (Scatter Plot)  
 
+#### **Örnek - 1: Müşterilerin yaşlarına göre vücut kitle indekslerinin verildiği serpilme diyagramı.**  
 
+```python
+x=veriSeti.yas
+y=veriSeti.vki
 
+plt.scatter(x, y)
+plt.xlabel("Yaş")
+plt.ylabel("Vücut Kitle İndeksi")
 
-
+```
+<img src="https://github.com/user-attachments/assets/11a77120-6624-4a74-a881-2eeaae9f990c" width="400">
 
 
 
