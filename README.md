@@ -32,5 +32,17 @@ plt.ylabel("Yaş")
 plt.title("İlk 35 Müşterinin Yaşı")  
 plt.show()
 ```
-![Çizgi Grafiği](https://github.com/user-attachments/assets/9c08b507-2e92-4774-a93b-12284d5ec4b4)
+<img src="https://github.com/user-attachments/assets/9c08b507-2e92-4774-a93b-12284d5ec4b4" width="400">
+
+
+
+#### **Örnek - 2: İlk ve ikinci 20'de yer alan musterilerin VKI karsilastirmasi**
+```python
+x1= np.arange(1,21)
+y1=veriSeti.iloc[0:20,2]
+y2=veriSeti.iloc[20:40,2]
+plt.xticks(x1)
+plt.plot(x1,y1,x1,y2)
+```
+<img src="https://github.com/user-attachments/assets/fb3e27a0-5ce2-40a6-956c-e63afd641243" width="400">
 
