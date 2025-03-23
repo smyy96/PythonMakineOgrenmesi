@@ -19,7 +19,7 @@ veriSeti["cinsiyet"]=veriSeti["cinsiyet"].replace(["male","female"], ["erkek","k
 veriSeti["sigaraDurum"] = veriSeti["sigaraDurum"].replace(["no","yes"],["hayır","evet"])
 veriSeti["bolge"]=veriSeti["bolge"].replace(["southeast","northwest","southwest","northeast"],["guneydogu","kuzeybati","guneybati","kuzeydogu"])
 
-"""
+
 # Verisetinin ozet bilgisi
 veriSeti.describe() # yalnizca sayisal niteliklerin ozet bilgisi
 
@@ -222,7 +222,7 @@ sns.violinplot(y="sigaraDurum",
                data=veriSeti, 
                palette="coolwarm")
 
-"""
+
 
 # ISI HARITASI ILE NITELIKLER ARASI ILISKILERIN INCELENMESİ (Heat Map)
 
