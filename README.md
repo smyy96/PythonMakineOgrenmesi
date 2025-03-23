@@ -93,6 +93,103 @@ plt.ylabel("Vücut Kitle İndeksi")
 ```
 <img src="https://github.com/user-attachments/assets/11a77120-6624-4a74-a881-2eeaae9f990c" width="400">
 
+#### **Örnek - 2: Sigortaya yapılan ödemenin yaşa göre incelendiği serpilme diyagramına vücut kitle indeksi niteliği üçüncü boyut olarak eklenirse.**  
+
+```python
+fig = plt.figure(figsize=(10, 6))
+ax = plt.axes(projection ="3d")
+ax.scatter(veriSeti.yas, veriSeti.odemeMiktari, veriSeti.vki, color="darkblue")
+ax.set_xlabel("Yaş")
+ax.set_ylabel("Ödeme Miktarı")
+ax.set_zlabel("Vücut Kitle İndeksi", rotation=90)
+ax.zaxis.labelpad=-0.7
+plt.title("3-Boyutlu Serpilme Diyagramı")
+
+```
+<img src="https://github.com/user-attachments/assets/4a11fe8e-3be0-4c78-a11f-cd866686dd04" width="400">
+
+
+
+### 📌 Histogram 
+
+#### **Örnek - 1: Müşterilerin vücut kitle indeksleri**  
+
+```python
+sns.histplot(data=veriSeti,x="vki", color="hotpink")
+sns.histplot(data=veriSeti,y="vki", color="lightgreen")
+
+```
+<img src="https://github.com/user-attachments/assets/ce16e21f-02dd-4878-b00f-bc111968dd64" width="200">
+<img src="https://github.com/user-attachments/assets/46f3f468-1ec8-4295-8891-1409b2ea9e28" width="200">
+
+
+
+### 📌 KUTU GRAFIGI (Box Plot) 
+
+#### **Örnek - 1: Müşterilerin vücut kitle indeksleri**  
+
+```python
+# Tek bir degiskenin kutu grafigi
+veriSeti["vki"].describe().round(2)
+bp = plt.boxplot(veriSeti["vki"], 
+                 vert=True, # Grafigin yonu
+                 showmeans=True, # Ortalamanin gosterim secenegi
+                 meanline=True, # Ortalamanin cizgisinin gosterim secenegi
+                 labels=('x'), # etiket
+                 patch_artist=True, # renk doldurulmasi
+                 medianprops={'linewidth': 2, 'color': 'yellow'}, # orta deger cizgisi ozellikleri
+                 meanprops={'linewidth': 2, 'color': 'red'}, # ortalama cizgisi ozellikleri
+                 notch=True) # centik ekleme
+plt.ylabel("Sigortaya Odenen Miktar")
+plt.legend([bp['medians'][0], bp['means'][0]], ['median', 'mean'])
+
+```
+<img src="https://github.com/user-attachments/assets/03614f77-c9da-4dbb-a151-cf62893fd2d2" width="400">
+
+
+#### **Örnek - 2: Müşterilerin sigara içip içmeme durumlarına göre sigortaya ödedikleri miktarlar karşılaştırılmıştır**  
+
+```python
+sns.boxplot(y="sigaraDurum", 
+            x="odemeMiktari", 
+            data=veriSeti, 
+            palette="rainbow")
+
+
+```
+<img src="https://github.com/user-attachments/assets/77b54b02-27d3-4d4a-847b-9b18decfea55" width="400">
+
+
+
+### 📌 Violin Grafiği
+
+#### **Örnek - 1: Müşterilerin vücut kitle indeksleri**  
+
+```python
+sns.violinplot(y="sigaraDurum", 
+               x="odemeMiktari", 
+               data=veriSeti, 
+               palette="coolwarm")
+
+```
+<img src="https://github.com/user-attachments/assets/0276ba7f-1701-4673-b6bd-cd5d524e2544" width="400">
+
+
+### 📌 Isı Haritası
+
+#### **Örnek - 1: Müşterilerin vücut kitle indeksleri**  
+
+```python
+korelasyon = veriSeti[["yas", "vki", "cocukSayisi", "odemeMiktari"]].corr()
+sns.heatmap(
+    korelasyon, 
+    annot = True, # Korelasyon degerlerinin grafigin uzerine yazdirma
+    square=True, # Kutularin kare bicimde gosterilmesi
+    cmap="Reds" # Renklendirme secenegi
+)
+
+```
+<img src="https://github.com/user-attachments/assets/17aaf930-ffe0-42ad-86a9-eab0d0a5f1b9" width="400">
 
 
 

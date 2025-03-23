@@ -19,6 +19,7 @@ veriSeti["cinsiyet"]=veriSeti["cinsiyet"].replace(["male","female"], ["erkek","k
 veriSeti["sigaraDurum"] = veriSeti["sigaraDurum"].replace(["no","yes"],["hayır","evet"])
 veriSeti["bolge"]=veriSeti["bolge"].replace(["southeast","northwest","southwest","northeast"],["guneydogu","kuzeybati","guneybati","kuzeydogu"])
 
+"""
 # Verisetinin ozet bilgisi
 veriSeti.describe() # yalnizca sayisal niteliklerin ozet bilgisi
 
@@ -145,3 +146,150 @@ y = altkume.odemeMiktari
 plt.scatter(x, y)
 plt.xlabel("Yaş")
 plt.ylabel("Ödeme Miktarı")
+
+
+
+# Ornek - 2: Musterilerin sigortaya odedikleri miktarin yasa gore incelenmesi. Renklendirme sigara icip icmeme durumlarina gore yapilmistir.
+sns.scatterplot(x="yas", 
+                y="odemeMiktari",
+                hue="sigaraDurum",
+                data=veriSeti)
+
+
+# Ornek - 3
+fig = plt.figure(figsize=(10, 6))
+ax = plt.axes(projection ="3d")
+ax.scatter(veriSeti.yas, veriSeti.odemeMiktari, veriSeti.vki, color="red")
+ax.set_xlabel("Yaş")
+ax.set_ylabel("Ödeme Miktarı")
+ax.set_zlabel("Vücut Kitle İndeksi", rotation=90)
+ax.zaxis.labelpad=-0.7
+plt.title("3-Boyutlu Serpilme Diyagramı")
+
+
+# # Ornek - 4
+pd.plotting.scatter_matrix(veriSeti,figsize=(20,20),grid=True, marker='o')
+
+
+
+sns.histplot(data=veriSeti,x="vki", color="hotpink")
+
+sns.histplot(data=veriSeti,y="vki", color="lightgreen")
+
+sns.histplot(data=veriSeti,x="vki", color="hotpink", bins=8) #bins değeri tablodaki çubukların yani sütunların sayısı
+
+sns.histplot(x="vki", kde = True, data = veriSeti, color="purple")
+
+
+
+# KUTU GRAFIGI (Box Plot)
+
+veriSeti["vki"].describe()
+
+
+# Ornek - 1
+# Tek bir degiskenin kutu grafigi
+veriSeti["vki"].describe().round(2)
+bp = plt.boxplot(veriSeti["vki"], 
+                 vert=True, # Grafigin yonu
+                 showmeans=True, # Ortalamanin gosterim secenegi
+                 meanline=True, # Ortalamanin cizgisinin gosterim secenegi
+                 labels=('x'), # etiket
+                 patch_artist=True, # renk doldurulmasi
+                 medianprops={'linewidth': 2, 'color': 'yellow'}, # orta deger cizgisi ozellikleri
+                 meanprops={'linewidth': 2, 'color': 'red'}, # ortalama cizgisi ozellikleri
+                 notch=True) # centik ekleme
+plt.ylabel("Sigortaya Odenen Miktar")
+plt.legend([bp['medians'][0], bp['means'][0]], ['median', 'mean'])
+
+
+
+
+# Ornek - 2
+# Bir degiskenin farkli kategorilere gore kutu grafigi
+sns.boxplot(y="sigaraDurum", 
+            x="odemeMiktari", 
+            data=veriSeti, 
+            palette="rainbow")
+
+
+
+# Violin Grafiği
+
+
+sns.violinplot(y="sigaraDurum", 
+               x="odemeMiktari", 
+               data=veriSeti, 
+               palette="coolwarm")
+
+"""
+
+# ISI HARITASI ILE NITELIKLER ARASI ILISKILERIN INCELENMESİ (Heat Map)
+
+# Ornek - 1
+korelasyon = veriSeti[["yas", "vki", "cocukSayisi", "odemeMiktari"]].corr()
+sns.heatmap(
+    korelasyon, 
+    annot = True, # Korelasyon degerlerinin grafigin uzerine yazdirma
+    square=True, # Kutularin kare bicimde gosterilmesi
+    cmap="Reds" # Renklendirme secenegi
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
